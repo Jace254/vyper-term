@@ -1,0 +1,13 @@
+src
+node_modules
+.eslintignore
+components.json
+eslint.config.js
+vite.config.ts
+tailwind.node.json
+tsconfig.json
+uno.config.ts
+preset.shadcn.ts
+pnpm-lock.yaml
+bump.config.ts
+.vscode
