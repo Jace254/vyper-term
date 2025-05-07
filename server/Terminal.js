@@ -27,6 +27,7 @@ io.on("connection", function (socket) {
       // socket.emit("data", "\r\n*** SSH CONNECTION ESTABLISHED ***\r\n");
       // console.log("SSH CONNECTION ESTABLISHED");
       connected = true;
+      console.log("SSH Connection Established");
       // Executing the command with the SSH Client
       ssh.shell(function (err, stream) {
         if (err)

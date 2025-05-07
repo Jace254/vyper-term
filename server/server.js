@@ -10,7 +10,8 @@ app.use(cors());
 const server = require("http").createServer(app);
 
 const io = require("socket.io")(server, {
-  transports: ["polling"],
+  path: "/",
+  transports: ["websocket"],
   cors: {
     origin: "*",
   },
@@ -18,7 +19,7 @@ const io = require("socket.io")(server, {
 
 // socket connection
 io.on("connection", (client) => {
-  // console.log("socket ID:" + client.id);
+  console.log("socket ID:" + client.id);
 
   client.on("join", (data) => {
     console.log(data);

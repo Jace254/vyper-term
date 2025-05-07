@@ -11,7 +11,11 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
 import { io } from 'socket.io-client'
 
-const socket = io.connect("ws://localhost:5000");
+const socket = io("ws://127.0.0.1:4001/terminal", {
+  path: "/terminal",
+  transports: ["websocket"],
+});
+
 
 const colorMode = useColorMode()
 const theme = computed<ITheme>(() => {
@@ -45,6 +49,7 @@ const fitAddon = new FitAddon()
 terminal.loadAddon(fitAddon)
 
 onMounted(() => {
+  setTimeout(() => {
       socket.on("connect", () => {
         terminal.onData((data) => {
           socket.emit("data", data);
@@ -60,7 +65,8 @@ onMounted(() => {
           terminal.write("\x1b[0m");
         });
       });
-    });
+    }, 100);
+});
 
 useResizeObserver(root, useDebounceFn(() => fitAddon.fit(), 200))
 
